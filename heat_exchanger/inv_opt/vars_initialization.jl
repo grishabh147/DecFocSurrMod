@@ -1,6 +1,6 @@
 function init_objective_params()
     # This would also initialize the dual vars
-    T3 = 388
+    T3 = 387
     NoS = length(u)
     IOP = Model(optimizer_with_attributes(Ipopt.Optimizer, "print_level" => 0))
     # IOP = Model(optimizer_with_attributes(Gurobi.Optimizer, "NonConvex" => 2, "TimeLimit" => 200, "OutputFlag" => 1))
