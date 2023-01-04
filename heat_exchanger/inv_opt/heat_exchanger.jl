@@ -5,5 +5,6 @@ I = 100
 
 T5 = rand(rng, 10:40, I)/10 .+ 586
 x = [forward_problem(T5[i]) for i in 1:10]
-
-
+p = init_constraint_params()
+λ, Q = init_objective_params()
+s = 

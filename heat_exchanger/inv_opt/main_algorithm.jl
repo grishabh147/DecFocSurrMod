@@ -14,11 +14,10 @@ mutable struct AlgParams
     max_inner_iter::Int64
 end
 
-function solve_bcd(vars::IOPVars, params::AlgParams)
+function solve_bcd()
 
-    # update variables
-    init_constraint_params!()
-    init_objective_params!()
+vars = IOPVars(x, λ, s, Q, p)
+alg_params = AlgParams(10, 1e-6, 1, 100, 10)
 
     for iter_count in 1:params.max_outer_iter
         for _ in 1:params.max_inner_iter
@@ -28,3 +27,4 @@ function solve_bcd(vars::IOPVars, params::AlgParams)
         end
     end
 end
+
