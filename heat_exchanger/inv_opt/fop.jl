@@ -14,5 +14,5 @@ function forward_problem(T5)
     @constraint(FP, 2*T3 - 1026 - Qc + (T5 - 323)*FH <= 0)
     @objective(FP, Min, 1e-2*Qc + 4*(FH - 1.7)^2)
     optimize!(FP)
-    return value.(Qc), value.(FH)
+    return [value.(Qc), value.(FH)]
 end

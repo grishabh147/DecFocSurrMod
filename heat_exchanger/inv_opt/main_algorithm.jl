@@ -14,17 +14,19 @@ mutable struct AlgParams
     max_inner_iter::Int64
 end
 
-function solve_bcd()
-
-vars = IOPVars(x, λ, s, Q, p)
-alg_params = AlgParams(10, 1e-6, 1, 100, 10)
-
+function solve_bcd(vars::IOPVars, params::AlgParams)
     for iter_count in 1:params.max_outer_iter
+        println(iter_count)
         for _ in 1:params.max_inner_iter
-            subproblem_1!()
-            subproblem_2!()
-            subproblem_3!()
+            subproblem_1!(vars, params)
+            subproblem_2!(vars, params)
+            subproblem_3!(vars, params)
+            println(norm(x - vars.primal))
+            println(norm(vars.slacks, 1))
+            println(vars.obj_params)
+            println(vars.constraint_params)
         end
+        params.penalty_params .+= params.η .* vars.slacks
     end
 end
 
